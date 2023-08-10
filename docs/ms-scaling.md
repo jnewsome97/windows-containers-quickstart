@@ -87,7 +87,7 @@ $ oc scale machineset cluster-lax-e35b-tmk54-windows-us-east-2a --replicas=1 -n 
 Please take a look at the YAML used for the MachineSet. Take a look at this config.
 
 ```shell
-$ oc get machineset cluster-jnh7f-mxtwq-windows-us-east-2c -n openshift-machine-api -o yaml
+$ oc get machineset cluster-lax-e35b-tmk54-windows-us-east-2a -n openshift-machine-api -o yaml
 ```
 
 For more information on how this is formatted, consult the [official documentation](https://docs.openshift.com/container-platform/latest/windows_containers/creating_windows_machinesets/creating-windows-machineset-aws.html)
