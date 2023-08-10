@@ -74,6 +74,7 @@ to interact with the containerd runtime.
 ```shell
 $ProgressPreference = "SilentlyContinue"; wget https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.27.0/crictl-v1.27.0-windows-amd64.tar.gz -o crictl-v1.27.0-windows-amd64.tar.gz; tar -xvf crictl-v1.27.0-windows-amd64.tar.gz -C C:\Windows\
 ```
+Now lets configure crictl.
 
 ```shell
 crictl config --set runtime-endpoint="npipe:\\\\.\\pipe\\containerd-containerd"
