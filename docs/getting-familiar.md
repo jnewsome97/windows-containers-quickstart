@@ -44,25 +44,28 @@ This should output OVNKubernetes as the network type.
 The next requisite is the cluster must be set up with overlay hybrid networking. This is another step that can only be done at install time. You can verify that the configuration has been done by running the following:
 
 ```shell
-$ oc get network.operator cluster -o yaml | yq e '.spec.defaultNetwork' -
+$ oc get network.operator cluster -o yaml | awk '/ovnKubernetesConfig:/{p=1} p&&/^    hybridClusterNetwork:/{print; p=0} p'
 ```
 
 The output should look like this. As you can see, the hybridOverlayConfig was set up. This is the overlay network setup on the Windows Node.
 
 ```shell
-ovnKubernetesConfig:
-  genevePort: 6081
-  hybridOverlayConfig:
-    hybridClusterNetwork:
-      - cidr: 10.132.0.0/14
-        hostPrefix: 23
-  mtu: 8901
-  policyAuditConfig:
-    destination: "null"
-    maxFileSize: 50
-    rateLimit: 20
-    syslogFacility: local0
-type: OVNKubernetes
+    ovnKubernetesConfig:
+      egressIPConfig: {}
+      gatewayConfig:
+        routingViaHost: false
+      genevePort: 6081
+      hybridOverlayConfig:
+        hybridClusterNetwork:
+        - cidr: 10.132.0.0/14
+          hostPrefix: 23
+      mtu: 8901
+      policyAuditConfig:
+        destination: "null"
+        maxFileSize: 50
+        rateLimit: 20
+        syslogFacility: local0
+    type: OVNKubernetes
 ```
 
 To summarize, in order to use Windows Containers on OpenShift. You will need the following:
