@@ -704,12 +704,16 @@ The MSSQL Database is also running on the Linux node.
 oc get pods -n netcandystore -l deploymentconfig=mssql -o wide
 ```
 
-You can extract the URL from the cluster
+In order to get your URL for the NetCandyStore please head on over to your OpenShift Console:
 
 ```shell
-$ oc get route netcandystore -n netcandystore -o jsonpath='{.spec.host}{"\n"}'
+oc get routes -n openshift-console
 ```
 
+Please login with the the admin creds on the page you started this workshop from.
+
+Once there please navigate to Networking -> Routes and then you can either search for NetCandyStore or simply select the NetCandyStore project. You will see the link to the NetCandyStore there.
+ 
 The frontpage should look like this, feel free to play around with the application!
 
 Picture
