@@ -276,6 +276,14 @@ After some time, you should be back at 1 Windows node.
 oc get nodes -l kubernetes.io/os=windows
 ```
 
+If you have two nodes please delete the oldest node:
+
+```shell
+oc delete node ip-10-0-231-225.us-east-2.compute.internal
+```
+
+PLEASE ONLY DO BELOW IF YOU HAVE MORE THAN ONE NODE
+
 ## Exploring The Windows Node
 
 Now that you’ve learned how to manage a Windows Node, we will explore how this node is set up. You can access this Windows node via the same mechanism as the WMCO, via SSH.
