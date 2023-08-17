@@ -125,6 +125,12 @@ First, we will be creating a MachineSet for Windows Nodes. We will then explore 
 $ windows-containers-quickstart/support/generate-windows-ms.sh
 ```
 
+If you get a permissions denied error you may need to change permissions using this command
+
+```shell
+chmod +x windows-containers-quickstart/support/generate-windows-ms.sh
+```
+
 This should create the windows-ms.yaml file in your home directory.
 
 ```shell
