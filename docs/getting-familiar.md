@@ -428,7 +428,7 @@ So here, the nodeSelector will place this container on the Windows Node. Further
 One last thing to look at. Take a look at the container that is being deployed.
 
 ```shell
-cat windows-containers-quickstart/support/ | python3 -c 'import sys, yaml, json; json.dump(yaml.safe_load(sys.stdin), sys.stdout, indent=4)' | jq '.items[2].spec.template.spec.containers[0].image'
+grep -A 1000 'name: win-webserver' winc-sample-workload.yaml | grep 'image:' | awk '{print $2}'
 ```
 
 Apply this YAML file to deploy the sample workload.
