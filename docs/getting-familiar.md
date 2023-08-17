@@ -646,6 +646,12 @@ Verify that the helm chart was installed successfully.
 helm ls -n netcandystore
 ```
 
+You can watch the progress of your pod here
+
+```shell
+kubectl get events --field-selector involvedObject.name=<netcandystore-78d78677c8-rlxrs> -n netcandystore --watch
+```
+
 The output should look something like this.
 
 ```shell
