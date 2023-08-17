@@ -36,7 +36,7 @@ $ oc version
 The next requisite is that the cluster must be installed with OVNKubernetes as the SDN for OpenShift. This can only be done at install time in the install-config.yaml file. This file is stored on the cluster after install. Take a look at the setting.
 
 ```shell
-$ oc extract cm/cluster-config-v1 -n kube-system --to=- | yq e '.networking.networkType' -
+$ oc extract cm/cluster-config-v1 -n kube-system --to=- | awk '/networkType:/{print $2}'
 ```
 
 This should output OVNKubernetes as the network type.
