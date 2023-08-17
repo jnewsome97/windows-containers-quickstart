@@ -397,10 +397,10 @@ Taints:             os=Windows:NoSchedule
 
 Every Windows Node will come with this taint by default. This taint will "repel" all workloads that don’t tolerate this taint. It is a part of the WMCO’s job to ensure that all Windows Nodes have this taint.
 
-In this lab, there is a sample workload saved under ~/support/winc-sample-workload.yaml. Let’s explore this file a bit before we apply it.
+In this lab, there is a sample workload saved under windows-containers-quickstart/support/winc-sample-workload.yaml. Let’s explore this file a bit before we apply it.
 
 ```shell
-yq e '.items[2].spec.template.spec.tolerations' windows-containers-quickstart/support/winc-sample-workload.yaml
+cat windows-containers-quickstart/support/winc-sample-workload.yaml | python3 -c 'import sys, yaml, json; json.dump(yaml.safe_load(sys.stdin), sys.stdout, indent=4)' | jq '.items[2].spec.template.spec.tolerations'
 ```
 
 The output should look something like this.
@@ -414,7 +414,7 @@ The output should look something like this.
 This sample workload has the toleration in place to be able to run on the Windows Node. However, that’s not enough. A nodeSelector will need to be present as well.
 
 ```shell
-yq e '.items[2].spec.template.spec.nodeSelector' windows-containers-quickstart/support/winc-sample-workload.yaml
+cat windows-containers-quickstart/support/winc-sample-workload.yaml | python3 -c 'import sys, yaml, json; json.dump(yaml.safe_load(sys.stdin), sys.stdout)' | jq '.items[2].spec.template.spec.nodeSelector'
 ```
 
 The output should look something like this.
@@ -428,13 +428,13 @@ So here, the nodeSelector will place this container on the Windows Node. Further
 One last thing to look at. Take a look at the container that is being deployed.
 
 ```shell
-yq e '.items[2].spec.template.spec.containers[0].image' windows-containers-quickstart/support/winc-sample-workload.yaml
+cat windows-containers-quickstart/support/ | python3 -c 'import sys, yaml, json; json.dump(yaml.safe_load(sys.stdin), sys.stdout, indent=4)' | jq '.items[2].spec.template.spec.containers[0].image'
 ```
 
 Apply this YAML file to deploy the sample workload.
 
 ```shell
-oc apply -f windows-containers-quickstart/support/winc-sample-workload.yaml
+oc apply -f windows-containers-quickstart/support/
 ```
 
 Wait for the deployment to finish rolling out. This can take 5-10 minutes as Windows images are large in size.
