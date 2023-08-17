@@ -646,12 +646,6 @@ Verify that the helm chart was installed successfully.
 helm ls -n netcandystore
 ```
 
-You can watch the progress of your pod here
-
-```shell
-kubectl get events --field-selector involvedObject.name=<netcandystore-78d78677c8-rlxrs> -n netcandystore --watch
-```
-
 The output should look something like this.
 
 ```shell
@@ -664,6 +658,12 @@ There should be 3 pods running for this application. One for the frondend called
 ```shell
 oc get pods -n netcandystore
 ```
+You can watch the progress of your pod here
+
+```shell
+kubectl get events --field-selector involvedObject.name=<netcandystore-78d78677c8-rlxrs> -n netcandystore --watch
+```
+
 ------
 PLEASE DO NOT DO THESE NEXT STEPS IF YOUR NETCANDYSTORE PODS ARE RUNNING:
 If there the NetCandyStore pod is having any issues you can try to delete and redeploy
