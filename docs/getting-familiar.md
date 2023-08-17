@@ -690,7 +690,11 @@ The MSSQL Database is also running on the Linux node.
 oc get pods -n netcandystore -l deploymentconfig=mssql -o wide
 ```
 
-You can see the application by visiting the link:http://netcandystore-netcandystore.{{ ROUTE_SUBDOMAIN }}[Net Candystore Route].
+You can extract the URL from the cluster
+
+```shell
+$ oc get route netcandystore -n netcandystore -o jsonpath='{.spec.host}{"\n"}'
+```
 
 The frontpage should look like this, feel free to play around with the application!
 
