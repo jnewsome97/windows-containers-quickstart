@@ -311,7 +311,7 @@ oc get pods -n openshift-windows-machine-config-operator -l app=winc-ssh
 The ssh bastion pod mounts the ssh key needed to login to the Windows Node.
 
 ```shell
-yq e '.spec.template.spec.volumes' windows-containers-quickstart/support/win-node-ssh.yaml
+cat windows-containers-quickstart/support/win-node-ssh.yaml | python3 -c 'import sys, yaml, json; json.dump(yaml.safe_load(sys.stdin), sys.stdout)' | jq '.spec.template.spec.volumes'
 ```
 
 In order to be able to ssh into this node you will need the hostname. Get this hostname with the following command and make note of it.
