@@ -19,6 +19,11 @@ Install yq using pip3
 $ sudo pip3 install yq
 ```
 
+Please install helm as well
+
+```shell
+curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+```
 Next we will be cloning a repo from github we will be using some yaml files from:
 
 ```shell
@@ -582,8 +587,128 @@ Next we will use this command below to create a Kubernetes resource with specifi
 oc create -f windows-containers-quickstart/support/restrictedfsgroupscc.yaml
 ```
 
+Next, we’ll allow a specific group of service accounts (in this case, those related to Microsoft SQL Server) to follow the strict security rules defined by the "restrictedfsgroup" Security Context Constraints in the OpenShift system.
 
+```shell
+oc adm policy add-scc-to-group restrictedfsgroup system:serviceaccounts:mssql
+```
 
+With the two variables exported, and the helm repo added, you can install the application stack using the helm cli.
+
+```shell
+helm install ncs --namespace netcandystore \
+--timeout=1200s \
+redhat-demos/netcandystore
+```
+
+Note: Note that the --timeout=1200s is needed because the default timeout for helm is 5 minutes and, in most cases, the Windows container image will take longer than that to download.
+
+This will look like it’s "hanging" or "stuck". It’s not! What’s happening is that the image is getting pulled into the Windows node. As stated before, Windows containers can be very large, so it might take some time.
+
+After some time, you should see something like the following return.
+
+```shell
+NAME: ncs
+LAST DEPLOYED: Sun Mar 28 00:16:05 2021
+NAMESPACE: netcandystore
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+1. Get the application URL by running these commands:
+oc get route netcandystore -n netcandystore -o jsonpath='{.spec.host}{"\n"}'
+
+2. NOTE: The Windows container deployed only supports the following OS:
+
+Windows Version:
+=============
+Windows Server 2019 Release 1809
+
+Build Version:
+=============
+
+Major  Minor  Build  Revision
+-----  -----  -----  --------
+10     0      17763  0
+```
+
+Verify that the helm chart was installed successfully.
+
+```shell
+helm ls -n netcandystore
+```
+
+The output should look something like this.
+
+```shell
+NAME    NAMESPACE       REVISION        UPDATED                                 STATUS          CHART                   APP VERSION
+ncs     netcandystore   1               2021-03-31 19:54:50.576808462 +0000 UTC deployed        netcandystore-1.0.3     3.1
+```
+
+There should be 3 pods running for this application. One for the frondend called netcandystore, one for the categories service called getcategories and a DB called mysql.
+
+```shell
+oc get pods -n netcandystore
+```
+------
+PLEASE DO NOT DO THESE NEXT STEPS IF YOUR NETCANDYSTORE PODS ARE RUNNING:
+If there the NetCandyStore pod is having any issues you can try to delete and redeploy
+
+```shell
+helm uninstall ncs --namespace netcandystore
+```
+
+```shell
+helm install ncs --namespace netcandystore --timeout=1200s redhat-demos/netcandystore
+```
+-----
+
+Looking at the frontend application, you can list where the pod is running. Comparing it to the nodes output, you can see it’s running on a Windows Node.
+
+```shell
+oc get pods -n netcandystore -l app=netcandystore -o wide
+oc get nodes -l kubernetes.io/os=windows
+```
+
+Now, looking at the backend, you can see it’s running on a Linux node.
+
+```shell
+oc get pods -n netcandystore -l app=getcategories -o wide
+oc get nodes -l kubernetes.io/os=linux
+```
+
+Now, looking at the backend, you can see it’s running on a Linux node.
+
+```shell
+oc get pods -n netcandystore -l app=getcategories -o wide
+oc get nodes -l kubernetes.io/os=linux
+```
+
+The MSSQL Database is also running on the Linux node.
+
+```shell
+oc get pods -n netcandystore -l deploymentconfig=mssql -o wide
+```
+
+You can see the application by visiting the link:http://netcandystore-netcandystore.{{ ROUTE_SUBDOMAIN }}[Net Candystore Route].
+
+The frontpage should look like this, feel free to play around with the application!
+
+Picture
+
+## Conclusion
+
+In this lab you worked with Windows Containers on OpenShift Container
+Platfrom. You saw how the cluster was prepared to support Windows
+Containers. You also learned about the Windows Machine Config Operator and
+how it's used to provision a Windows Node.
+
+You also learned about how to manage Windows Nodes using the MachineAPi
+and how to manage Windows Container workloads using the same tools as
+Linux Nodes.
+
+Finally, you learned how you can used mixed workloads made up of Linux
+and Windows containers.
 
 
 
