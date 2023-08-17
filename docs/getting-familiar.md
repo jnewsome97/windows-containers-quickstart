@@ -6,24 +6,15 @@ In this module, we'll get familiar with the cluster and the install of the Windo
 $ ssh chernand-redhat.com@bastion.lax-e35b.sandbox886.opentlc.com
 ```
 
-To start we are going to Install Python 3 and Pip. We need these in order to install yq. We will be using this throughout the module.
+To start we are going to Install Python 3, Pip, yq and helm. We need these in order to install yq. We will be using this throughout the module.
 
 ```shell
 $ sudo yum install python3
 sudo yum install python3-pip
-```
-
-Install yq using pip3
-
-```shell
-$ sudo pip3 install yq
-```
-
-Please install helm as well
-
-```shell
+sudo pip3 install yq
 curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
 ```
+
 Next we will be cloning a repo from github we will be using some yaml files from:
 
 ```shell
