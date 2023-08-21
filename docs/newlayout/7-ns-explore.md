@@ -30,17 +30,18 @@ kubectl get events --field-selector involvedObject.name=<netcandystore-78d78677c
 
 > :warning: **WARNING:** Please do **not** perform the following steps if your NetCandyStore pods are currently running. If the NetCandyStore pod is experiencing any issues, you may consider deleting and redeploying it.
 
-\````shell
+```shell
 helm uninstall ncs --namespace netcandystore
-\````
+```
 
-\````shell
+```shell
 helm install ncs --namespace netcandystore --timeout=1200s redhat-demos/netcandystore
-\````
+```
+
+:heavy_check_mark: **Troubleshooting Steps Completed**
 
 ---
 
-:heavy_check_mark: **Troubleshooting Steps Completed**
 
 
 Looking at the frontend application, you can list where the pod is running. Comparing it to the nodes output, you can see it’s running on a Windows Node.
