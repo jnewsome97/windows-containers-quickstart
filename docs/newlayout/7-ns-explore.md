@@ -28,20 +28,20 @@ You can watch the progress of your pod here
 kubectl get events --field-selector involvedObject.name=<netcandystore-78d78677c8-rlxrs> -n netcandystore --watch
 ```
 
-------
 > :warning: **WARNING:** Please do **not** perform the following steps if your NetCandyStore pods are currently running. If the NetCandyStore pod is experiencing any issues, you may consider deleting and redeploying it.
 
-```shell
+\````shell
 helm uninstall ncs --namespace netcandystore
-```
+\````
 
-```shell
+\````shell
 helm install ncs --namespace netcandystore --timeout=1200s redhat-demos/netcandystore
-```
+\````
 
 ---
 
-:information_source: **End of Troubleshooting Steps**
+:heavy_check_mark: **Troubleshooting Steps Completed**
+
 
 Looking at the frontend application, you can list where the pod is running. Comparing it to the nodes output, you can see it’s running on a Windows Node.
 
