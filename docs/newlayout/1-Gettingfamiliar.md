@@ -76,10 +76,14 @@ To summarize, in order to use Windows Containers on OpenShift. You will need the
 
 Note, that all of this is done at install time. There’s, currently, no way to configure a cluster for Windows Containers post install.
 
-<!-- Add empty lines here for the desired space -->
-<!-- Add empty lines here for the desired space -->
-<!-- Add empty lines here for the desired space -->
-<!-- Add empty lines here for the desired space -->
-<!-- Add empty lines here for the desired space -->
-<!-- Add empty lines here for the desired space -->
+<br/><br/><br/>
+<br/><br/><br/>
+<br/><br/><br/>
+<br/><br/><br/>
+<br/><br/><br/>
+<br/><br/><br/>
+<br/><br/><br/>
+<br/><br/><br/>
+<br/><br/><br/>
+<br/><br/><br/>
 
