@@ -65,4 +65,4 @@ If you have two nodes please delete the oldest node:
 oc delete node ip-10-0-231-225.us-east-2.compute.internal
 ```
 
-PLEASE ONLY DO BELOW IF YOU HAVE MORE THAN ONE NODE
+PLEASE ONLY DO above IF YOU HAVE MORE THAN ONE NODE
