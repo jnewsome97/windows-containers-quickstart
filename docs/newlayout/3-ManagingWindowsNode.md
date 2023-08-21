@@ -59,11 +59,11 @@ After some time, you should be back at 1 Windows node.
 oc get nodes -l kubernetes.io/os=windows
 ```
 
+> :warning: **WARNING:** Please only proceed with the below steps if you have more than one node.
+
 If you have two nodes please delete the oldest node:
 
 ```shell
 oc delete node ip-10-0-231-225.us-east-2.compute.internal
 ```
-
-> :warning: **WARNING:** Please only proceed with the above steps if you have more than one node.
 
