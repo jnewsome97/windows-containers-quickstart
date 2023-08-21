@@ -1,3 +1,8 @@
+# Deploying NetCandy Store Overview
+
+In this section we will deploy the NetCandy Store application using `helm`. You can deliver your Windows workloads in the same way you deliver your Linux workloads. Since everything is just YAML, the workflow is the same. Whether that be via Helm, an Operator, or via Ansible.
+
+
 ## Running a Mixed Linux/Windows Container Workload.
 
 With Windows Containers support for OpenShift; You also have the ability to run application stacks of mixed workloads. This gives you the ability to run an application stack consisting of both Linx and Windows Containers.
