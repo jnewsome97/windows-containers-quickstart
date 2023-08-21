@@ -79,11 +79,4 @@ Note, that all of this is done at install time. There’s, currently, no way to 
 <br/><br/><br/>
 <br/><br/><br/>
 <br/><br/><br/>
-<br/><br/><br/>
-<br/><br/><br/>
-<br/><br/><br/>
-<br/><br/><br/>
-<br/><br/><br/>
-<br/><br/><br/>
-<br/><br/><br/>
 
